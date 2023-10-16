@@ -35,10 +35,12 @@ def face_recognize():
 		dir += '\\'
 	train_dir = os.listdir(dir)
 
-	# Loop through each person in the training directory 
+	# Loop through each person in the training directory
+	print("People to identify from : ", end = "")
 	for person in train_dir: 
-		pix = os.listdir(dir + person) 
-
+		pix = os.listdir(dir + person)
+		print(person, end = ", ")
+	
 		# Loop through each training image for the current person 
 		for person_img in pix: 
 			# Get the face encodings for the face in each image file 
@@ -54,7 +56,8 @@ def face_recognize():
 				encodings.append(face_enc) 
 				names.append(person) 
 			else: 
-				print(person + "\\" + person_img + " can't be used for training") 
+				print(person + "\\" + person_img + " can't be used for training")
+	print("\n\n")
 
 	# Create and train the SVC classifier 
 	clf = svm.SVC(gamma ='scale') 
